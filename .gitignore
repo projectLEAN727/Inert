@@ -1,0 +1,11 @@
+# Media (keep repository lightweight)
+*.mp4
+*.mp3
+*.wav
+
+# Original source text (full content is published as docs/LOGIQUALIA_SPEC.md)
+ロジカリア仕様書.txt
+
+# OS artifacts
+.DS_Store
+Thumbs.db
