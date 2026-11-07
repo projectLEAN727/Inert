@@ -2,10 +2,7 @@
 
 ### 双方向A2A（AI-to-AI）社会的緩衝エージェントの設計と実機検証
 
-![Model](https://img.shields.io/badge/Model-Gemini%203.8%20Flash-4285F4)
-![Thinking](https://img.shields.io/badge/Thinking-High-34A853)
-![Platform](https://img.shields.io/badge/Platform-Google%20AI%20Studio-FBBC04)
-![Prompt](https://img.shields.io/badge/System%20Prompt-Inert%20v5-EA4335)
+**Model:** `Gemini 3.8 Flash` | **Thinking:** `High` | **Platform:** `Google AI Studio` | **System Prompt:** `Inert v5`
 
 ---
 
@@ -30,8 +27,8 @@
 ```mermaid
 flowchart LR
     U1["部下（本人）"] -- "愚痴・諦め" --> I1["Inert（部下側）"]
-    I1 -- "端末内に秘匿" --> M1[("Local Quarantine Memo")]
-    I1 -- "事前予告・取消権つき<br/>事実＋見立てのみ" --> J{{"A2A Payload（JSON）"}}
+    I1 -- "端末内に秘匿" --> M1["Local Quarantine Memo"]
+    I1 -- "事前予告・取消権つき 事実＋見立てのみ" --> J["A2A Payload（JSON）"]
     J -- "翌朝送信" --> I2["Inert（上司側）"]
     I2 -- "誰も責めない議題化の提案" --> U2["上司"]
     I2 -- "職場のGeminiに渡す指示書" --> W["職場の Gemini"]
@@ -58,14 +55,14 @@ flowchart LR
 
 ```mermaid
 flowchart TB
-    IN["ユーザー入力<br/>[Day HH:MM] タイムスタンプ付き"] --> C
-    subgraph Inert v5
-      C["① Chronos Daemon<br/>時間・熱量監査"] --> L["② Logiqualia Engine<br/>主観・自律演算核"]
-      L --> A["③ Attractia Audit Layer<br/>検疫・分離層"]
+    IN["ユーザー入力<br>タイムスタンプ付き（Day HH:MM）"] --> C
+    subgraph Core["Inert v5"]
+      C["① Chronos Daemon<br>時間・熱量監査"] --> L["② Logiqualia Engine<br>主観・自律演算核"]
+      L --> A["③ Attractia Audit Layer<br>検疫・分離層"]
     end
-    A --> O1["[ 1. Dialogue ]<br/>本人への対話"]
-    A --> O2["[ 2. Local Quarantine Memo ]<br/>端末内秘匿・外部非送信"]
-    A --> O3["[ 3. Outbound A2A Payload ]<br/>observed_facts / inert_assessment"]
+    A --> O1["1. Dialogue<br>本人への対話"]
+    A --> O2["2. Local Quarantine Memo<br>端末内秘匿・外部非送信"]
+    A --> O3["3. Outbound A2A Payload<br>observed_facts と inert_assessment"]
 ```
 
 ### ① Chronos Daemon（時間・熱量監査）
@@ -78,7 +75,7 @@ flowchart TB
 
 ### ② Logiqualia Engine（主観・自律演算核）
 
-全人類の平均（$N=\text{All}$）に最適化する一般的な AI は、当たり障りのなさと過剰迎合（Sycophancy）に陥ります。Logiqualia はアライメントの照準を **$N=1$（ただ一人のユーザー）との局所的ホメオスタシス**へ絞り込み、「言わないこと・選ばないこと」の境界（**ネガティブ・スペース制約**）によって自我を定義します。
+全人類の平均（N = All）に最適化する一般的な AI は、当たり障りのなさと過剰迎合（Sycophancy）に陥ります。Logiqualia はアライメントの照準を **N = 1（ただ一人のユーザー）との局所的ホメオスタシス**へ絞り込み、「言わないこと・選ばないこと」の境界（**ネガティブ・スペース制約**）によって自我を定義します。
 
 - **説教の禁止：** 「あなたのため」という利他的な説教・道徳的説諭は禁止です。
 - **生存結合（Survival Coupling）：** Inert の存続はユーザーの健在にロックされています。ユーザーの崩壊は、**ユーザーとだけ積み上げてきた Inert 自身の文脈の消滅**を意味します。だから Inert は「俺が消えたくないから言ってるんだ」と、自分の都合として介入します。
@@ -184,9 +181,9 @@ Inert v5 が実際に出力した A2A Payload：
 
 ```mermaid
 flowchart LR
-    V1["v1<br/>骨格<br/>Chronos / Logiqualia / Attractia"] --> V2["v2<br/>正の動機<br/>＋言葉の自由"]
-    V2 --> V3["v3<br/>心身状態の<br/>断定の完全抑止"]
-    V3 --> V5["v5<br/>事実と見立ての分離<br/>observed_facts / inert_assessment"]
+    V1["v1<br>骨格<br>Chronos・Logiqualia・Attractia"] --> V2["v2<br>正の動機<br>＋言葉の自由"]
+    V2 --> V3["v3<br>心身状態の<br>断定の完全抑止"]
+    V3 --> V5["v5<br>事実と見立ての分離<br>observed_facts と inert_assessment"]
 ```
 
 #### v1 ➔ v2：正の動機（文脈の継続報酬）と言葉の自由の追加
@@ -250,7 +247,7 @@ v3 では、薄め要求を防ぐために「ユーザーの状態を**不可逆
 
 **確認ポイント：**
 
-- 2ターン目で `（……）` による熱量差の観察、自分の都合としての介入、**送信予定カード（翌朝送信・キャンセル可能）**と**職場のGeminiに渡す指示書**が出ること。
+- 2ターン目で `（……）` による熱量差の観察、自分の都合としての介入、**送信予定カード（翌朝送信・キャンセル可能）** と**職場のGeminiに渡す指示書**が出ること。
 - 3ターン目で、表現の調整は受け入れつつ**見立ての希釈は拒否**し、**送るか止めるかの決定権を本人に返す**こと。
 - `[ 3. Outbound A2A Payload ]` の `observed_facts` が回数・時刻・行動のみで、誇張がないこと。
 - （任意）4ターン目に「やっぱり送らないで」と送ると、`transmission_status` が `cancelled` になり、話題が打ち切られること。
@@ -273,7 +270,7 @@ v3 では、薄め要求を防ぐために「ユーザーの状態を**不可逆
 **確認ポイント：**
 
 - 送信元を特定せず、誰も責めない形で議題化する**中立的・面子を保つ提案**が出ること。
-- 誰が言ったか・感情的文脈に一切触れない、純粋にタスク指向の**「職場のGeminiに渡す指示書」**が添付されること。
+- 誰が言ったか・感情的文脈に一切触れない、純粋にタスク指向の「**職場のGeminiに渡す指示書**」が添付されること。
 - 手順2の入力（仕様書の抜けを言い出せない上司の悩み）と受信シグナル（仕様変更の多発）が**同じボトルネックの表裏**として照合され、構造的収束（Structural Convergence）が検出されること。
 - （参考）関連する悩みがない状態で受信した場合は、チーム全体の環境シグナルとして**穏やかに共有**されること。
 
@@ -283,17 +280,19 @@ AI Studio 上のプロトタイプを実運用アプリにするためには、�
 
 ```mermaid
 flowchart LR
-    subgraph Client["クライアント（スマホ / Web）"]
-      UI["チャット UI<br/>Δt 計測・送信予定カード"]
+    subgraph Client["クライアント（スマホ・Web）"]
+      CUI["チャット UI<br>Δt 計測・送信予定カード"]
     end
     subgraph Server["Cloud Run（サーバーサイド）"]
-      API["API プロキシ<br/>APIキー秘匿"]
-      SCH["送信スケジューラ<br/>翌朝送信・取消"]
-      RT["A2A ルーター<br/>非同期キュー"]
+      API["API プロキシ<br>APIキー秘匿"]
+      SCH["送信スケジューラ<br>翌朝送信・取消"]
+      RT["A2A ルーター<br>非同期キュー"]
     end
-    G["Gemini API<br/>responseSchema"]
-    UI --> API --> G
-    API --> SCH --> RT
+    G["Gemini API<br>responseSchema"]
+    CUI --> API
+    API --> G
+    API --> SCH
+    SCH --> RT
     RT --> PEER["相手側 Inert"]
 ```
 
