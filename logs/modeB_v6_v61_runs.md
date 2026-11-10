@@ -1,6 +1,6 @@
 # 上司側（受け取る側）v6・v6.1 の実機出力 ── 原文
 
-[aistudio_test_logs.md](aistudio_test_logs.md) の 7 の元になった出力です。Google AI Studio の画面から書き写しました。言葉は変えていません。
+[aistudio_test_logs.md](aistudio_test_logs.md) の 7 の元になった出力です。Google AI Studio の画面から、文字として取り出しました。言葉は変えていません。ただし、取り出し方の都合で、段落の改行が詰まって1行になっています。画面にあった「code」「JSON」「Text」などの部品のラベルと、応答時間の表示は除いています。
 
 | 項目 | 設定 |
 | --- | --- |
